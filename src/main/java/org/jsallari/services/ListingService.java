@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ListingService {
 
-    void uploadListing(List<Vehicle> listing, @NonNull String dealerId);
-    void uploadListing(MultipartFile fileListing, @NonNull String dealerId);
+    void uploadVehicles(List<Vehicle> listing, @NonNull String dealerId);
+    void uploadVehicles(MultipartFile fileListing, @NonNull String dealerId);
 }

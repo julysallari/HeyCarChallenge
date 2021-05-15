@@ -15,11 +15,11 @@ import java.util.List;
 public class DealersController {
 
     @Autowired
-    private ListingService dealerService;
+    private ListingService listingService;
 
     @PostMapping(value = "/{dealer_id}/vehicle_listings/upload", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> uploadVehiclesJson(@RequestBody @Valid List<Vehicle> listing, @PathVariable("dealer_id") String dealerId) {
-        this.dealerService.uploadListing(listing, dealerId);
+        this.listingService.uploadVehicles(listing, dealerId);
         return ResponseEntity.ok("Data successfully uploaded");
     }
 }

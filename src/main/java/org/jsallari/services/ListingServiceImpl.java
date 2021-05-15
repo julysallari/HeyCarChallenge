@@ -24,13 +24,13 @@ public class ListingServiceImpl implements ListingService {
     private VehicleRepository vehicleRepository;
 
     @Override
-    public void uploadListing(List<Vehicle> listing, String dealerId) {
+    public void uploadVehicles(List<Vehicle> listing, String dealerId) {
         listing.forEach(vehicle -> vehicle.setDealerId(Long.valueOf(dealerId)));
         vehicleRepository.saveAll(listing);
     }
 
     @Override
-    public void uploadListing(MultipartFile fileListing, String dealerId) {
+    public void uploadVehicles(MultipartFile fileListing, String dealerId) {
         try (CSVParser csvParser = CSVUtils.getCsvParser(fileListing)) {
 
             List<Vehicle> vehicles = new LinkedList<>();
