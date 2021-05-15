@@ -24,8 +24,7 @@ public class Vehicle extends Listing {
     }
 
     @JsonCreator
-    public Vehicle(@JsonProperty(value = "code", required = true) @NotNull String code,
-                   String model, String make, Integer year, Integer kw, String color, Double price) {
+    public Vehicle(@JsonProperty(value = "code", required = true) @NotNull String code, String model, String make, Integer year, Integer kw, String color, Double price) {
         super();
         this.code = code;
         this.model = model;

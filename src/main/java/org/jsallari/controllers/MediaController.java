@@ -1,26 +1,20 @@
 package org.jsallari.controllers;
 
-import org.jsallari.entities.Vehicle;
-import org.jsallari.services.DealerService;
+import org.jsallari.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class MediaController {
 
     @Autowired
-    private DealerService dealerService;
+    private ListingService dealerService;
 
-    @PostMapping(value = "/upload_csv/{dealer_id}/vehicles", consumes = "text/csv")
-    public ResponseEntity<String> uploadVehicles(@RequestBody @Valid List<Vehicle> listing, @PathVariable("dealer_id") String dealerId) {
-        this.dealerService.uploadListing(listing, dealerId);
+    @PostMapping(value = "/upload_csv/{dealer_id}/vehicles")
+    public ResponseEntity<String> uploadVehicles(@RequestParam("file") MultipartFile fileListing, @PathVariable("dealer_id") String dealerId) {
+        this.dealerService.uploadListing(fileListing, dealerId);
         return ResponseEntity.ok("Data successfully uploaded");
     }
 }
