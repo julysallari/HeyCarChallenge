@@ -16,15 +16,10 @@ import static org.jsallari.repositories.VehicleSpecification.hasEqualFields;
 import static org.springframework.data.jpa.domain.Specification.where;
 
 @Service
-public class SearchServiceImpl implements SearchService{
+public class SearchServiceImpl implements SearchService {
 
     @Autowired
     private VehicleRepository vehicleRepository;
-
-    @Override
-    public List<Vehicle> findBy(@Nullable final String model, @Nullable String make, @Nullable String year, @Nullable String color) {
-        return new LinkedList<>();
-    }
 
     @Override
     public List<Vehicle> findByFields(Map<String, Object> fields) {

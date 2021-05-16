@@ -2,6 +2,7 @@ package org.jsallari.services;
 
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.jsallari.entities.Listing;
 import org.jsallari.entities.Vehicle;
 import org.jsallari.repositories.VehicleRepository;
 import org.jsallari.utils.CSVUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("DealerService")
 public class ListingServiceImpl implements ListingService {
@@ -31,9 +33,14 @@ public class ListingServiceImpl implements ListingService {
 
             List<Vehicle> vehicles = new LinkedList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-            Vehicle vehicle = null;
+            Optional<Listing> optVehicle;
+            Vehicle vehicle;
             for (CSVRecord csvRecord : csvRecords) {
-                vehicle = CSVUtils.getVehicleRecord(csvRecord);
+                optVehicle = CSVUtils.getListingRecord(csvRecord, Vehicle.class);
+                if (optVehicle.isEmpty()) {
+                    throw new RuntimeException("fail to parse CSV file"); //TODO
+                }
+                vehicle = (Vehicle) optVehicle.get();
                 vehicle.setDealerId(Long.valueOf(dealerId));
                 vehicles.add(vehicle);
             }

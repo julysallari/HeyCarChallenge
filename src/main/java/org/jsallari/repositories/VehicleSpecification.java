@@ -11,8 +11,8 @@ import javax.persistence.criteria.Root;
 
 public class VehicleSpecification {
 
-    public static Specification<Vehicle> hasEqualFields(@NonNull String fieldName, @Nullable Object fieldValue) {
-        return new Specification<Vehicle>() {
+    public static ListingSpecification<Vehicle> hasEqualFields(@NonNull String fieldName, @Nullable Object fieldValue) {
+        return new ListingSpecification<Vehicle>() {
             @Override
             public Predicate toPredicate(Root<Vehicle> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.equal(root.get(fieldName), fieldValue);
