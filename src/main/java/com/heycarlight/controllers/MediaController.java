@@ -1,7 +1,7 @@
-package heycarlight.controllers;
+package com.heycarlight.controllers;
 
-import heycarlight.responses.UploadResponse;
-import heycarlight.services.ListingService;
+import com.heycarlight.responses.UploadResponse;
+import com.heycarlight.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

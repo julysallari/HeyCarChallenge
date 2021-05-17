@@ -1,4 +1,4 @@
-package heycarlight.exceptions;
+package com.heycarlight.exceptions;
 
 public class NonExistingEntity extends RuntimeException {
     public NonExistingEntity(String msg) {

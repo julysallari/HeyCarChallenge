@@ -1,4 +1,4 @@
-package heycarlight.responses;
+package com.heycarlight.responses;
 
 import java.util.List;
 

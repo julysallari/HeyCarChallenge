@@ -1,6 +1,6 @@
-package heycarlight.services;
+package com.heycarlight.services;
 
-import heycarlight.controllers.VehicleRequest;
+import com.heycarlight.controllers.VehicleRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,7 +1,7 @@
-package heycarlight.services;
+package com.heycarlight.services;
 
-import heycarlight.entities.Vehicle;
-import heycarlight.repositories.VehicleRepository;
+import com.heycarlight.entities.Vehicle;
+import com.heycarlight.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static heycarlight.repositories.VehicleSpecification.hasEqualFields;
+import static com.heycarlight.repositories.VehicleSpecification.hasEqualFields;
 import static org.springframework.data.jpa.domain.Specification.where;
 
 @Service

@@ -1,8 +1,8 @@
-package heycarlight.controllers;
+package com.heycarlight.controllers;
 
-import heycarlight.services.DealerService;
-import heycarlight.responses.UploadResponse;
-import heycarlight.services.ListingService;
+import com.heycarlight.services.DealerService;
+import com.heycarlight.responses.UploadResponse;
+import com.heycarlight.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,7 +30,7 @@ public class DealerController {
         return ResponseEntity.ok(new UploadResponse("Some items could not be uploaded", notUploaded));
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addDealer(@RequestBody String name){
         this.dealerService.addDealer(name);

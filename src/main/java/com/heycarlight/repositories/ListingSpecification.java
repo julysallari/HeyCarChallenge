@@ -1,4 +1,4 @@
-package heycarlight.repositories;
+package com.heycarlight.repositories;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

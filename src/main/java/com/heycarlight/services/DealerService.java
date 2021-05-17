@@ -1,6 +1,6 @@
-package heycarlight.services;
+package com.heycarlight.services;
 
-import heycarlight.entities.Dealer;
+import com.heycarlight.entities.Dealer;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;

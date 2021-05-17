@@ -1,7 +1,7 @@
-package heycarlight.controllers;
+package com.heycarlight.controllers;
 
-import heycarlight.entities.Vehicle;
-import heycarlight.services.SearchService;
+import com.heycarlight.entities.Vehicle;
+import com.heycarlight.services.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

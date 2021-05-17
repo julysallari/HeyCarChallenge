@@ -1,6 +1,6 @@
-package heycarlight.services;
+package com.heycarlight.services;
 
-import heycarlight.entities.Vehicle;
+import com.heycarlight.entities.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

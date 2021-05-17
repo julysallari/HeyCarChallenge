@@ -1,7 +1,7 @@
-package heycarlight.services;
+package com.heycarlight.services;
 
-import heycarlight.entities.Dealer;
-import heycarlight.repositories.DealerRepository;
+import com.heycarlight.entities.Dealer;
+import com.heycarlight.repositories.DealerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

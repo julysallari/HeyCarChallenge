@@ -1,4 +1,4 @@
-package heycarlight.entities;
+package com.heycarlight.entities;
 
 import org.springframework.lang.Nullable;
 
