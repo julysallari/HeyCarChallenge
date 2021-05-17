@@ -15,12 +15,12 @@ public class DealerServiceImpl implements DealerService{
     private DealerRepository dealerRepository;
 
     @Override
-    public void addDealer(String name) {
-        this.dealerRepository.save(new Dealer(name));
+    public void addDealer(Dealer dealer) {
+        this.dealerRepository.save(dealer);
     }
 
     @Override
-    public Optional<Dealer> findById(String id) {
-        return this.dealerRepository.findById(UUID.fromString(id));
+    public Optional<Dealer> findById(UUID id) {
+        return this.dealerRepository.findById(id);
     }
 }

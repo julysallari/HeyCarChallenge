@@ -6,9 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 public interface ListingService {
 
-    List<String> uploadVehicles(@Valid List<VehicleRequest> listing, @NonNull String dealerId);
-    List<String> uploadVehicles(MultipartFile fileListing, @NonNull String dealerId);
+    List<String> uploadVehicles(@Valid List<VehicleRequest> listing, @NonNull UUID dealerId);
+    List<String> uploadVehicles(MultipartFile fileListing, @NonNull UUID dealerId);
 }

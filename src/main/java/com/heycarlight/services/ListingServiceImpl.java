@@ -25,21 +25,20 @@ public class ListingServiceImpl implements ListingService {
     private DealerService dealerService;
 
     @Override
-    public List<String> uploadVehicles(@NonNull List<VehicleRequest> listingRequest, @NonNull String dealerId) {
+    public List<String> uploadVehicles(@NonNull List<VehicleRequest> listingRequest, @NonNull UUID dealerId) {
         if (this.dealerService.findById(dealerId).isEmpty()) {
             throw new NonExistingEntity("Dealer not found");
         }
-        UUID idDealer = UUID.fromString(dealerId);
         List<String> notUploaded = new LinkedList<>();
         Map<String, UUID> dealerMap = new HashMap<>();
-        this.vehicleRepository.findByDealerId(idDealer).forEach(vehicle -> dealerMap.put(vehicle.getCode(), vehicle.getId()));
+        this.vehicleRepository.findByDealerId(dealerId).forEach(vehicle -> dealerMap.put(vehicle.getCode(), vehicle.getId()));
         listingRequest.forEach(vr -> {
             UUID existingId = dealerMap.get(vr.getCode());
             try{
                 if (existingId != null) {
-                    this.vehicleRepository.save(new Vehicle(existingId, vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), idDealer));
+                    this.vehicleRepository.save(new Vehicle(existingId, vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), dealerId));
                 } else {
-                    this.vehicleRepository.save((new Vehicle(vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), idDealer)));
+                    this.vehicleRepository.save((new Vehicle(vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), dealerId)));
                 }
             } catch (RuntimeException e) {
                 notUploaded.add(vr.getCode());
@@ -49,7 +48,7 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public List<String> uploadVehicles(@NonNull MultipartFile fileListing, @NonNull String dealerId) {
+    public List<String> uploadVehicles(@NonNull MultipartFile fileListing, @NonNull UUID dealerId) {
         try (CSVParser csvParser = CSVUtils.getCsvParser(fileListing)) {
             List<VehicleRequest> vehicleResponseDTOS = new LinkedList<>();
             for (CSVRecord csvRecord : csvParser.getRecords()) {

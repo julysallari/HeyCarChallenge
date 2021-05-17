@@ -4,8 +4,9 @@ import com.heycarlight.entities.Dealer;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface DealerService {
-    void addDealer(@NonNull String name);
-    Optional<Dealer> findById(String id);
+    void addDealer(@NonNull Dealer dealer);
+    Optional<Dealer> findById(UUID id);
 }

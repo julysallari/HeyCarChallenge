@@ -1,5 +1,6 @@
 package com.heycarlight.controllers;
 
+import com.heycarlight.entities.Dealer;
 import com.heycarlight.services.DealerService;
 import com.heycarlight.responses.UploadResponse;
 import com.heycarlight.services.ListingService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/dealers")
@@ -23,7 +25,7 @@ public class DealerController {
 
     @PostMapping(value = "/{dealer_id}/vehicle_listings/upload", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UploadResponse> uploadVehiclesJson(@RequestBody @Valid List<VehicleRequest> listing, @PathVariable("dealer_id") String dealerId) {
-        List<String> notUploaded = this.listingService.uploadVehicles(listing, dealerId);
+        List<String> notUploaded = this.listingService.uploadVehicles(listing, UUID.fromString(dealerId));
         if (notUploaded.isEmpty()) {
             return ResponseEntity.ok(new UploadResponse("Data successfully uploaded"));
         }
@@ -33,6 +35,6 @@ public class DealerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addDealer(@RequestBody String name){
-        this.dealerService.addDealer(name);
+        this.dealerService.addDealer(new Dealer(name));
     }
 }
