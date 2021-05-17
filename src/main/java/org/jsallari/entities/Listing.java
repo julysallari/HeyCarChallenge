@@ -6,21 +6,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Listing {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     public Listing() {}
 
-    public Listing(@Nullable Long id) {
+    public Listing(@Nullable UUID id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return this.id;
     }
 }

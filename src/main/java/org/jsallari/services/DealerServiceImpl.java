@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class DealerServiceImpl implements DealerService{
@@ -20,6 +21,6 @@ public class DealerServiceImpl implements DealerService{
 
     @Override
     public Optional<Dealer> findById(String id) {
-        return this.dealerRepository.findById(Long.valueOf(id));
+        return this.dealerRepository.findById(UUID.fromString(id));
     }
 }

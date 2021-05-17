@@ -1,17 +1,16 @@
 package org.jsallari.entities;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Entity
 public class Vehicle extends Listing {
 
-    private Long dealerId;
+    private UUID dealerId;
     private String code;
     private String model;
     private String make;
@@ -24,7 +23,7 @@ public class Vehicle extends Listing {
         super();
     }
 
-    public Vehicle(@Nullable Long id,
+    public Vehicle(@Nullable UUID id,
                    @NotNull String code,
                    @NotNull String model,
                    @NotNull String make,
@@ -32,7 +31,7 @@ public class Vehicle extends Listing {
                    @NotNull Integer kw,
                    @NotNull String color,
                    @NotNull Double price,
-                   @NotNull Long dealerId) {
+                   @NotNull UUID dealerId) {
         super(id);
         this.code = code;
         this.model = model;
@@ -51,11 +50,11 @@ public class Vehicle extends Listing {
                    @NotNull Integer kw,
                    @NotNull String color,
                    @NotNull Double price,
-                   @NotNull Long dealerId) {
+                   @NotNull UUID dealerId) {
         this(null, code, model, make, year, kw, color, price, dealerId);
     }
 
-    public Long getDealerId() {
+    public UUID getDealerId() {
         return dealerId;
     }
 

@@ -29,16 +29,13 @@ public class ListingServiceImpl implements ListingService {
         if (this.dealerService.findById(dealerId).isEmpty()) {
             throw new NonExistingEntity("Dealer not found");
         }
-        Long idDealer = Long.valueOf(dealerId);
+        UUID idDealer = UUID.fromString(dealerId);
         List<String> notUploaded = new LinkedList<>();
-        Map<String, Long> dealerMap = new HashMap<>();
+        Map<String, UUID> dealerMap = new HashMap<>();
         this.vehicleRepository.findByDealerId(idDealer).forEach(vehicle -> dealerMap.put(vehicle.getCode(), vehicle.getId()));
         listingRequest.forEach(vr -> {
-            Long existingId = dealerMap.get(vr.getCode());
+            UUID existingId = dealerMap.get(vr.getCode());
             try{
-                if (vr.getCode().equals("code3")) {
-                    throw new RuntimeException();
-                }
                 if (existingId != null) {
                     this.vehicleRepository.save(new Vehicle(existingId, vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), idDealer));
                 } else {
