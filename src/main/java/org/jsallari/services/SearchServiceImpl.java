@@ -23,21 +23,13 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<Vehicle> findByFields(Map<String, Object> fields) {
-        Specification<Vehicle> specification = null;
+        Specification<Vehicle> specification = Specification.where(null);
         for (Map.Entry<String,Object> entry : fields.entrySet()) {
             Object val = entry.getValue();
             if (val != null) {
-                if(specification == null) {
-                    specification = where(hasEqualFields(entry.getKey(),val));
-                } else {
-                    specification = specification.and(where(hasEqualFields(entry.getKey(),val)));
-                }
+                specification = specification.and(where(hasEqualFields(entry.getKey(),val)));
             }
         }
         return this.vehicleRepository.findAll(specification);
-    }
-
-    public List<Vehicle> findAll() {
-        return Lists.newArrayList(this.vehicleRepository.findAll());
     }
 }

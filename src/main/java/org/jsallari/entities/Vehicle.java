@@ -2,6 +2,7 @@ package org.jsallari.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 
@@ -23,9 +24,16 @@ public class Vehicle extends Listing {
         super();
     }
 
-    @JsonCreator
-    public Vehicle(@JsonProperty(value = "code", required = true) @NotNull String code, String model, String make, Integer year, Integer kw, String color, Double price) {
-        super();
+    public Vehicle(@Nullable Long id,
+                   @NotNull String code,
+                   @NotNull String model,
+                   @NotNull String make,
+                   @NotNull Integer year,
+                   @NotNull Integer kw,
+                   @NotNull String color,
+                   @NotNull Double price,
+                   @NotNull Long dealerId) {
+        super(id);
         this.code = code;
         this.model = model;
         this.make = make;
@@ -33,10 +41,18 @@ public class Vehicle extends Listing {
         this.kw = kw;
         this.color = color;
         this.price = price;
+        this.dealerId = dealerId;
     }
 
-    public void setDealerId(Long dealerId) {
-        this.dealerId = dealerId;
+    public Vehicle(@NotNull String code,
+                   @NotNull String model,
+                   @NotNull String make,
+                   @NotNull Integer year,
+                   @NotNull Integer kw,
+                   @NotNull String color,
+                   @NotNull Double price,
+                   @NotNull Long dealerId) {
+        this(null, code, model, make, year, kw, color, price, dealerId);
     }
 
     public Long getDealerId() {
@@ -69,6 +85,22 @@ public class Vehicle extends Listing {
 
     public Double getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && this.getClass().equals(obj.getClass())) {
+            Vehicle other = (Vehicle) obj;
+            return this.dealerId.equals(other.dealerId) &&
+                    this.code.equals(other.code) &&
+                    this.model.equals(other.model) &&
+                    this.make.equals(other.make) &&
+                    this.year.equals(other.year) &&
+                    this.kw.equals(other.kw) &&
+                    this.color.equals(other.color) &&
+                    this.price.equals(other.price);
+        }
+        return false;
     }
 }
 

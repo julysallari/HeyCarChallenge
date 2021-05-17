@@ -32,9 +32,4 @@ public class SearchController {
         fields.put("color", color);
         return ResponseEntity.ok(this.searchService.findByFields(fields));
     }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Vehicle>> getAll() {
-        return ResponseEntity.ok(this.searchService.findAll());
-    }
 }

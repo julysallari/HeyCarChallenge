@@ -10,5 +10,4 @@ import java.util.Map;
 public interface SearchService {
 
     List<Vehicle> findByFields(Map<String, Object> fields);
-    List<Vehicle> findAll();
 }

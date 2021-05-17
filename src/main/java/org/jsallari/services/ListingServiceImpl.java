@@ -2,51 +2,65 @@ package org.jsallari.services;
 
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.jsallari.entities.Listing;
+import org.jsallari.controllers.VehicleRequest;
 import org.jsallari.entities.Vehicle;
+import org.jsallari.exceptions.CSVParsing;
+import org.jsallari.exceptions.NonExistingEntity;
 import org.jsallari.repositories.VehicleRepository;
 import org.jsallari.utils.CSVUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service("DealerService")
 public class ListingServiceImpl implements ListingService {
 
     @Autowired
     private VehicleRepository vehicleRepository;
+    @Autowired
+    private DealerService dealerService;
 
     @Override
-    public void uploadVehicles(List<Vehicle> listing, String dealerId) {
-        listing.forEach(vehicle -> vehicle.setDealerId(Long.valueOf(dealerId)));
-        vehicleRepository.saveAll(listing);
+    public List<String> uploadVehicles(@NonNull List<VehicleRequest> listingRequest, @NonNull String dealerId) {
+        if (this.dealerService.findById(dealerId).isEmpty()) {
+            throw new NonExistingEntity("Dealer not found");
+        }
+        Long idDealer = Long.valueOf(dealerId);
+        List<String> notUploaded = new LinkedList<>();
+        Map<String, Long> dealerMap = new HashMap<>();
+        this.vehicleRepository.findByDealerId(idDealer).forEach(vehicle -> dealerMap.put(vehicle.getCode(), vehicle.getId()));
+        listingRequest.forEach(vr -> {
+            Long existingId = dealerMap.get(vr.getCode());
+            try{
+                if (vr.getCode().equals("code3")) {
+                    throw new RuntimeException();
+                }
+                if (existingId != null) {
+                    this.vehicleRepository.save(new Vehicle(existingId, vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), idDealer));
+                } else {
+                    this.vehicleRepository.save((new Vehicle(vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), idDealer)));
+                }
+            } catch (RuntimeException e) {
+                notUploaded.add(vr.getCode());
+            }
+        });
+        return notUploaded;
     }
 
     @Override
-    public void uploadVehicles(MultipartFile fileListing, String dealerId) {
+    public List<String> uploadVehicles(@NonNull MultipartFile fileListing, @NonNull String dealerId) {
         try (CSVParser csvParser = CSVUtils.getCsvParser(fileListing)) {
-
-            List<Vehicle> vehicles = new LinkedList<>();
-            Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-            Optional<Listing> optVehicle;
-            Vehicle vehicle;
-            for (CSVRecord csvRecord : csvRecords) {
-                optVehicle = CSVUtils.getListingRecord(csvRecord, Vehicle.class);
-                if (optVehicle.isEmpty()) {
-                    throw new RuntimeException("fail to parse CSV file"); //TODO
-                }
-                vehicle = (Vehicle) optVehicle.get();
-                vehicle.setDealerId(Long.valueOf(dealerId));
-                vehicles.add(vehicle);
+            List<VehicleRequest> vehicleResponseDTOS = new LinkedList<>();
+            for (CSVRecord csvRecord : csvParser.getRecords()) {
+                vehicleResponseDTOS.add(CSVUtils.getVehicleRequest(csvRecord));
             }
-            vehicleRepository.saveAll(vehicles);
+            return this.uploadVehicles(vehicleResponseDTOS, dealerId);
         } catch (IOException e) {
-            throw new RuntimeException("fail to parse CSV file: " + e.getMessage());
+            throw new CSVParsing("Fail to parse file: " + fileListing.getName());
         }
     }
 }
