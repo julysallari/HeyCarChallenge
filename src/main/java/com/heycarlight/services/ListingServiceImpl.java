@@ -1,12 +1,11 @@
 package com.heycarlight.services;
 
 import com.heycarlight.controllers.VehicleRequest;
-import com.heycarlight.entities.Vehicle;
 import com.heycarlight.exceptions.CSVParsing;
 import com.heycarlight.exceptions.NonExistingEntity;
 import com.heycarlight.repositories.VehicleRepository;
 import com.heycarlight.utils.CSVUtils;
-import com.heycarlight.utils.VehicleConverter;
+import com.heycarlight.entities.VehicleConverter;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;

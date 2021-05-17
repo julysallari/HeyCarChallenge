@@ -1,7 +1,6 @@
-package com.heycarlight.utils;
+package com.heycarlight.entities;
 
 import com.heycarlight.controllers.VehicleRequest;
-import com.heycarlight.entities.Vehicle;
 
 import java.util.UUID;
 
