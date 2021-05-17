@@ -1,7 +1,7 @@
-package org.jsallari.services;
+package heycarlight.services;
 
-import org.jsallari.entities.Dealer;
-import org.jsallari.repositories.DealerRepository;
+import heycarlight.entities.Dealer;
+import heycarlight.repositories.DealerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

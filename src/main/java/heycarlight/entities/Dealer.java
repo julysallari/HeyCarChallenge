@@ -1,4 +1,4 @@
-package org.jsallari.entities;
+package heycarlight.entities;
 
 import org.springframework.lang.NonNull;
 

@@ -1,7 +1,7 @@
-package org.jsallari.controllers;
+package heycarlight.controllers;
 
-import org.jsallari.entities.Vehicle;
-import org.jsallari.services.SearchService;
+import heycarlight.entities.Vehicle;
+import heycarlight.services.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/byFields")
+    @GetMapping("/")
     public ResponseEntity<List<Vehicle>> getVehicles(@RequestParam(required = false) String model,
                                                      @RequestParam(required = false) String make,
                                                      @RequestParam(required = false) String year,

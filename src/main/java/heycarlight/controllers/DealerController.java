@@ -1,8 +1,8 @@
-package org.jsallari.controllers;
+package heycarlight.controllers;
 
-import org.jsallari.responses.UploadResponse;
-import org.jsallari.services.DealerService;
-import org.jsallari.services.ListingService;
+import heycarlight.services.DealerService;
+import heycarlight.responses.UploadResponse;
+import heycarlight.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,7 +30,7 @@ public class DealerController {
         return ResponseEntity.ok(new UploadResponse("Some items could not be uploaded", notUploaded));
     }
 
-    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add")
     @ResponseStatus(HttpStatus.CREATED)
     public void addDealer(@RequestBody String name){
         this.dealerService.addDealer(name);

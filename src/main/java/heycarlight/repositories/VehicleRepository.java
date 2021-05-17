@@ -1,6 +1,6 @@
-package org.jsallari.repositories;
+package heycarlight.repositories;
 
-import org.jsallari.entities.Vehicle;
+import heycarlight.entities.Vehicle;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

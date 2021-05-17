@@ -1,6 +1,6 @@
-package org.jsallari.services;
+package heycarlight.services;
 
-import org.jsallari.entities.Dealer;
+import heycarlight.entities.Dealer;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;

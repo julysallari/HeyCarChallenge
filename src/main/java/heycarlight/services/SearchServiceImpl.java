@@ -1,18 +1,15 @@
-package org.jsallari.services;
+package heycarlight.services;
 
-import org.jsallari.entities.Vehicle;
-import org.jsallari.repositories.VehicleRepository;
+import heycarlight.entities.Vehicle;
+import heycarlight.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.google.common.collect.Lists;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static org.jsallari.repositories.VehicleSpecification.hasEqualFields;
+import static heycarlight.repositories.VehicleSpecification.hasEqualFields;
 import static org.springframework.data.jpa.domain.Specification.where;
 
 @Service

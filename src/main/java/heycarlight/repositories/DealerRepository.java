@@ -1,6 +1,6 @@
-package org.jsallari.repositories;
+package heycarlight.repositories;
 
-import org.jsallari.entities.Dealer;
+import heycarlight.entities.Dealer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package org.jsallari.exceptions;
+package heycarlight.exceptions;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 /**
  * Exception handler that converts thrown exceptions to readable error responses.
  */
-@ControllerAdvice("org.jsallari.controllers")
+@ControllerAdvice("heycarlight.controllers")
 class ErrorControllerAdvice {
 
     @ExceptionHandler(NonExistingEntity.class)

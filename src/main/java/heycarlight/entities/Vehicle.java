@@ -1,4 +1,4 @@
-package org.jsallari.entities;
+package heycarlight.entities;
 
 import org.springframework.lang.Nullable;
 
@@ -84,22 +84,6 @@ public class Vehicle extends Listing {
 
     public Double getPrice() {
         return price;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(obj != null && this.getClass().equals(obj.getClass())) {
-            Vehicle other = (Vehicle) obj;
-            return this.dealerId.equals(other.dealerId) &&
-                    this.code.equals(other.code) &&
-                    this.model.equals(other.model) &&
-                    this.make.equals(other.make) &&
-                    this.year.equals(other.year) &&
-                    this.kw.equals(other.kw) &&
-                    this.color.equals(other.color) &&
-                    this.price.equals(other.price);
-        }
-        return false;
     }
 }
 

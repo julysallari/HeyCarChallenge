@@ -1,4 +1,4 @@
-package org.jsallari.controllers;
+package heycarlight.controllers;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

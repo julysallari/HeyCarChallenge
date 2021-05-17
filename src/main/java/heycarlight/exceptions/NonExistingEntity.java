@@ -1,4 +1,4 @@
-package org.jsallari.exceptions;
+package heycarlight.exceptions;
 
 public class NonExistingEntity extends RuntimeException {
     public NonExistingEntity(String msg) {

@@ -1,4 +1,4 @@
-package org.jsallari.responses;
+package heycarlight.responses;
 
 import java.util.List;
 

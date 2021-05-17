@@ -1,6 +1,6 @@
-package org.jsallari.repositories;
+package heycarlight.repositories;
 
-import org.jsallari.entities.Vehicle;
+import heycarlight.entities.Vehicle;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
