@@ -1,6 +1,7 @@
 package com.heycarlight.controllers;
 
 import com.heycarlight.entities.Dealer;
+import com.heycarlight.requests.VehicleRequest;
 import com.heycarlight.services.DealerService;
 import com.heycarlight.responses.UploadResponse;
 import com.heycarlight.services.ListingService;

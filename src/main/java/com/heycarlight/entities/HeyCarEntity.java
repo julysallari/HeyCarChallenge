@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class Listing {
+public class HeyCarEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -19,9 +19,9 @@ public class Listing {
     )
     private UUID id;
 
-    public Listing() {}
+    public HeyCarEntity() {}
 
-    public Listing(@Nullable UUID id) {
+    public HeyCarEntity(@Nullable UUID id) {
         this.id = id;
     }
 

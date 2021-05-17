@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import javax.persistence.Entity;
 
 @Entity
-public class Dealer extends Listing {
+public class Dealer extends HeyCarEntity {
 
     private String name;
 

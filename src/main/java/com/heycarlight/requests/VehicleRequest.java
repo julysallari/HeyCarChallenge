@@ -1,4 +1,4 @@
-package com.heycarlight.controllers;
+package com.heycarlight.requests;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotNull;
 
 public class VehicleRequest {
-    private String code;
-    private String model;
-    private String make;
-    private Integer year;
-    private Integer kw;
-    private String color;
-    private Double price;
+    private final String code;
+    private final String model;
+    private final String make;
+    private final Integer year;
+    private final Integer kw;
+    private final String color;
+    private final Double price;
 
     @JsonCreator
     public VehicleRequest(@JsonProperty(value = "code", required = true) @NotNull String code,

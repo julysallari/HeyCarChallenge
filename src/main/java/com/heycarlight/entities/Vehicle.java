@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
-public class Vehicle extends Listing {
+public class Vehicle extends HeyCarEntity {
 
     private UUID dealerId;
     private String code;
