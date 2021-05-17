@@ -6,6 +6,7 @@ import com.heycarlight.exceptions.CSVParsing;
 import com.heycarlight.exceptions.NonExistingEntity;
 import com.heycarlight.repositories.VehicleRepository;
 import com.heycarlight.utils.CSVUtils;
+import com.heycarlight.utils.VehicleConverter;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ public class ListingServiceImpl implements ListingService {
             UUID existingId = dealerMap.get(vr.getCode());
             try{
                 if (existingId != null) {
-                    this.vehicleRepository.save(new Vehicle(existingId, vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), dealerId));
+                    this.vehicleRepository.save(VehicleConverter.createFrom(vr, existingId, dealerId));
                 } else {
-                    this.vehicleRepository.save((new Vehicle(vr.getCode(), vr.getModel(), vr.getMake(), vr.getYear(), vr.getKw(), vr.getColor(), vr.getPrice(), dealerId)));
+                    this.vehicleRepository.save(VehicleConverter.createFrom(vr, dealerId));
                 }
             } catch (RuntimeException e) {
                 notUploaded.add(vr.getCode());

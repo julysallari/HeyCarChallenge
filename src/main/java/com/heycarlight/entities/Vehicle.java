@@ -43,17 +43,6 @@ public class Vehicle extends Listing {
         this.dealerId = dealerId;
     }
 
-    public Vehicle(@NotNull String code,
-                   @NotNull String model,
-                   @NotNull String make,
-                   @NotNull Integer year,
-                   @NotNull Integer kw,
-                   @NotNull String color,
-                   @NotNull Double price,
-                   @NotNull UUID dealerId) {
-        this(null, code, model, make, year, kw, color, price, dealerId);
-    }
-
     public UUID getDealerId() {
         return dealerId;
     }
