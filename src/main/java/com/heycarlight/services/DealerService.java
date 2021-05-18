@@ -15,12 +15,16 @@ public class DealerService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(DealerService.class);
 
-    @Autowired
     private DealerRepository dealerRepository;
 
-    public void addDealer(Dealer dealer) {
-        this.dealerRepository.save(dealer);
+    public DealerService(@Autowired DealerRepository dealerRepository){
+        this.dealerRepository = dealerRepository;
+    }
+
+    public Dealer addDealer(Dealer dealer) {
+        Dealer created = this.dealerRepository.save(dealer);
         LOGGER.info("Dealer " + dealer.getId() + " created.");
+        return created;
     }
 
     public Optional<Dealer> findById(UUID id) {

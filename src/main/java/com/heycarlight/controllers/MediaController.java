@@ -16,7 +16,7 @@ public class MediaController {
     @Autowired
     private ListingService listingService;
 
-    @PostMapping(value = "/upload_csv/{dealer_id}/vehicles")
+    @PostMapping(value = "/upload_csv/{dealer_id}")
     public ResponseEntity<UploadResponse> uploadVehicles(@RequestParam("file") MultipartFile fileListing, @PathVariable("dealer_id") String dealerId) {
         List<String> notUploaded = this.listingService.uploadVehicles(fileListing, UUID.fromString(dealerId));
         if (notUploaded.isEmpty()) {

@@ -24,7 +24,7 @@ public class DealerController {
     @Autowired
     private DealerService dealerService;
 
-    @PostMapping(value = "/{dealer_id}/vehicle_listings/upload", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{dealer_id}/vehicle_listings", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UploadResponse> uploadVehiclesJson(@RequestBody @Valid List<VehicleRequest> listing, @PathVariable("dealer_id") String dealerId) {
         List<String> notUploaded = this.listingService.uploadVehicles(listing, UUID.fromString(dealerId));
         if (notUploaded.isEmpty()) {
@@ -35,7 +35,7 @@ public class DealerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addDealer(@RequestBody String name){
-        this.dealerService.addDealer(new Dealer(name));
+    public ResponseEntity<Dealer> addDealer(@RequestBody String name){
+        return ResponseEntity.status(201).body(this.dealerService.addDealer(new Dealer(name)));
     }
 }

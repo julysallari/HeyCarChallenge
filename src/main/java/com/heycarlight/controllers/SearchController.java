@@ -20,7 +20,7 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Vehicle>> getVehicles(@RequestParam(required = false) String model,
                                                      @RequestParam(required = false) String make,
                                                      @RequestParam(required = false) String year,

@@ -1,0 +1,5 @@
+[
+  {"code":"code1", "model":"model1", "make":"make1", "year":"2021", "kw":"10000", "color":"color1", "price":"2000"},
+  {"code":"code2", "model":"model2", "make":"make2", "year":"2022", "kw":"10002", "color":"color2", "price":"2002"},
+  {"code":"code3", "model":"model3", "make":"make3", "year":"2023", "kw":"10003", "color":"color3", "price":"2003"}
+]
