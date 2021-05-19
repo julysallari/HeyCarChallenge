@@ -15,7 +15,13 @@ docker build -t jsallari/heycar .
 It is possible to check the API definition via Swagger UI: http://localhost:8080/swagger-ui/index.html.
 
 Some decisions I made:
-- I included an endpoint to create a Dealer. This is mainly to keep the right data in place when creating new listings.
+- I included an endpoint to create a Dealer. This is mainly to keep the right data in place when creating new listings. In order to create new listings, it is necessary to have an existing dealer id.
+
+``curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"name":"dealerName"}' \                                                                                               
+    http://localhost:8080/dealers
+``
 
 ## How to start testing the app
 
